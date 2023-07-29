@@ -2,6 +2,7 @@
   "name": "flowo",
   "displayName": "Flowo",
   "description": "markdown note tool",
+  "publisher": "SinjinShi",
   "icon": "source/extension_icon.png",
   "version": "0.0.1",
   "engines": {
