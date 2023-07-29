@@ -1,0 +1,59 @@
+{
+  "name": "flowo",
+  "displayName": "Flowo",
+  "description": "markdown note tool",
+  "icon": "source/extension_icon.png",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/vscode-wordcount.git"
+  },
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "flowo.favorite",
+      "title": "Favorite",
+			"category": "Flowo"
+    },{
+      "command": "flowo.newFav",
+      "title": "New Favorite",
+			"category": "Flowo"
+    },{
+      "command": "flowo.newMarkdown",
+      "title": "New Markdown",
+			"category": "Flowo"
+    },{
+      "command": "flowo.randomFile",
+      "title": "Try Your Luck",
+			"category": "Flowo"
+    },{
+      "command": "flowo.insert",
+      "title": "Insert Plate",
+			"category": "Flowo"
+    }
+  ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3",
+    "@vscode/test-electron": "^2.3.2"
+  }
+}
