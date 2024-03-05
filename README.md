@@ -41,13 +41,16 @@ command: `Flowo: New Markdown`
 
 Insert predefine plate. how to use it's up to you!!!
 
-- I use `#tag` for managing my knowledge
-- I use `@somebody` for recording big event with who
 - It can be use like snippets
   - 5w1h
   - kpt
   - swot
   - planlist
+
+- lifeTime
+  - set birthday in flowo.json
+    - `"birthday": "1970-01-01"`
+
 
 command: `Flowo: Insert Plate`
 
@@ -93,6 +96,7 @@ command: `Flowo: Try Your Luck`
       "description": "/working"
     }
   ],
+  "birthday": "1970-01-01",
   // insert plate
   // support two type, you can set it for everywhere
   "inserts": [

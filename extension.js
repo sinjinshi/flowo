@@ -278,6 +278,7 @@ function activate(context) {
 					return { label: v.name, description: v.description }
 				}
 			})
+			items.push({ label: 'lifetime', description: 'year past & life past' })
 			insertObj = await vscode.window.showQuickPick(items, {
 				title: 'Quick Insert',
 				canPickMany: false,
@@ -286,10 +287,32 @@ function activate(context) {
 
 
 		if (insertObj) {
-			let insertStr =  insertObj.description? insertObj.description : insertObj.label
+			let insertStr = insertObj.description ? insertObj.description : insertObj.label
 
-			editor.selections.forEach( (selection, i) => {
+			editor.selections.forEach((selection, i) => {
 				editor.edit((editBuilder) => {
+					if (insertStr == 'year past & life past') {
+						if (_config.birthday) {
+							if (birthdayValidator(_config.birthday)
+							) {
+								let times = _config.birthday.split('-')
+								const now = new Date();
+								const yearStart = new Date(now.getFullYear(), 0, 1); // 11 represents December (0-indexed)
+								const birthday = new Date(times[0], times[1]-1, times[2]); // 11 represents December (0-indexed)
+								const millisecondsPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+								// Calculate the difference between today and the end of the year
+								const daysPastYear = Number(Math.ceil((now - yearStart) / millisecondsPerDay) / 365).toFixed(2);
+								const daysPastLife = Number(Math.ceil((now - birthday) / millisecondsPerDay) / (365 * 60 / 100)).toFixed(2);
+								editBuilder.insert(selection.active, `今年进程${daysPastYear}% 人生进程${daysPastLife}%`)
+								return
+							}
+						console.log(birthdayValidator(_config.birthday));
+
+						}
+						console.log(_config.birthday);
+						console.log(111111111);
+						editBuilder.insert(selection.active, 'birthday errro in flowo.json')
+					}
 					editBuilder.insert(selection.active, insertStr)
 				})
 			})
@@ -338,5 +361,14 @@ const format = (date, fmt) => {
 	}
 	return fmt;
 
+}
+
+const birthdayValidator = (birthday) => {
+	const rlt = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/.test(birthday)
+	if (rlt) {
+		return true
+	} else {
+		return false
+	}
 }
 
